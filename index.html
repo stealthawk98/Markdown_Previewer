@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Previewer</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <script src="./marked.js"></script>
+    <script>
+
+const defaultMarkdown = `# H1 Heading
+## H2 Subheading
+
+This is a [link](https://www.freecodecamp.org)
+
+Inline code: \`console.log("Stealthawk98")\`
+
+\`\`\`
+function greet() {
+  console.log("Hello, Stealthawk98!");
+}
+\`\`\`
+
+- List item 1
+- List item 2
+
+> This is a blockquote.
+
+![Image](https://images.pexels.com/photos/28271638/pexels-photo-28271638/free-photo-of-a-desert-landscape-with-mountains-in-the-background.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load)
+
+**This is bold text**`;
+
+
+        // Function to update the preview as you type
+        function updatePreview() {
+            document.getElementById('preview').innerHTML = marked(document.getElementById('editor').value);
+        }
+
+        
+        window.onload = function(){
+            const editor = document.getElementById('editor');
+            const preview = document.getElementById('preview');
+            editor.value = defaultMarkdown;
+            preview.innerHTML = marked(defaultMarkdown);
+        }
+
+            </script>
+</head>
+<body>
+    <h1 class="container-fluid text-center bg-success text-white py-3">Markdown Previewer</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 ps-5">
+                <h2>Text Editor</h2>
+                <!-- Textarea with id="editor" and oninput to trigger updatePreview -->
+                <textarea id="editor" class="form-control" rows="10" oninput="updatePreview()"></textarea>
+            </div>
+            <div class="col-md-6 pe-5">
+                <h2>Preview</h2>
+                <!-- Preview area with id="preview" that will display converted HTML -->
+                <div id="preview" class="border p-3" style="height: 250px; overflow-y: scroll;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FreeCodeCamp testing script (must be included last) -->
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
